@@ -46,11 +46,11 @@ const logoClasses = [
   "sm:text-3xl md:text-4xl",
 ].join(" ");
 
-const textButtonClasses = [
-  "py-2 text-base tracking-wide text-foreground/70",
+const iconButtonClasses = [
+  "-mr-2 p-2 text-foreground/70",
   "transition-colors duration-200 hover:text-foreground",
   "focus-visible:outline focus-visible:outline-2",
-  "focus-visible:outline-offset-4 focus-visible:outline-foreground",
+  "focus-visible:outline-offset-2 focus-visible:outline-foreground",
 ].join(" ");
 
 const linkStyles = {
@@ -89,6 +89,38 @@ const drawerBaseClasses = [
   "border-l border-foreground/10 bg-background md:hidden",
   "transition-transform duration-300 ease-out",
 ].join(" ");
+
+function MenuIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-7 w-7"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    >
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-7 w-7"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    >
+      <path d="M6 6l12 12M18 6L6 18" />
+    </svg>
+  );
+}
 
 type NavLinkProps = {
   item: NavItem;
@@ -197,12 +229,13 @@ export default function Navbar() {
 
           <button
             type="button"
+            aria-label="Open menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen(true)}
-            className={`${textButtonClasses} md:hidden`}
+            className={`${iconButtonClasses} md:hidden`}
           >
-            menu
+            <MenuIcon />
           </button>
         </nav>
       </header>
@@ -223,8 +256,13 @@ export default function Navbar() {
         }`}
       >
         <div className="flex h-24 items-center justify-end px-6 sm:px-10">
-          <button type="button" onClick={close} className={textButtonClasses}>
-            close
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={close}
+            className={iconButtonClasses}
+          >
+            <CloseIcon />
           </button>
         </div>
 
